@@ -66,7 +66,7 @@ class Basic_Component_System{
         $id = '';
 
         if(array_key_exists('cat', $atts) && !empty($atts['cat'])){
-            $func_name = 'component_'.$atts['cat'];
+            $func_name = 'bcs_component_'.$atts['cat'];
         }else{
             $html .= 'cat value not found in shortcode';
         }
