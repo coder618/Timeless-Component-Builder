@@ -96,7 +96,10 @@ class Basic_Component_System{
 		/**
 		 * ajax request handler
 		 */
+        require plugin_dir_path( __FILE__ ) .  'inc/add_categories.php';
+        require plugin_dir_path( __FILE__ ) .  'inc/add_metabox.php';
         require plugin_dir_path( __FILE__ ) .  'inc/generate-metabox.php';
+        require plugin_dir_path( __FILE__ ) .  'inc/save_metabox.php';
 
         /**
 		 *  shortcode register
