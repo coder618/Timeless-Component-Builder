@@ -3,7 +3,7 @@ require 'add_categories.php';
 
 
 
-function global_notice_meta_box() {
+function bcs_add_metaboxes() {
     $bcs_fileds = apply_filters( 'bcs__fileds', array());
     bcs_add_categories($bcs_fileds);
     // var_dump($bcs_fileds);
@@ -11,14 +11,14 @@ function global_notice_meta_box() {
 
 
     add_meta_box(
-        'global-notice',
-        __( 'Global Notice', 'sitepoint' ),
-        'global_notice_meta_box_callback'
+        'bcs_metaboxes',
+        __( 'Component Info', 'sitepoint' ),
+        'bcs_generate_fields'
     );
 
 }
 
-add_action( 'add_meta_boxes', 'global_notice_meta_box' );
+add_action( 'add_meta_boxes', 'bcs_add_metaboxes' );
 
 
 
@@ -26,14 +26,45 @@ add_action( 'add_meta_boxes', 'global_notice_meta_box' );
 
 
 
-function global_notice_meta_box_callback( $post ) {
+function bcs_generate_fields( $post ) {
+    $value = get_post_meta( $post->ID, 'bcs_data', true );
+    $bcs_fileds = apply_filters( 'bcs__fileds', array());
 
-    // Add a nonce field so we can check for it later.
-    wp_nonce_field( 'global_notice_nonce', 'global_notice_nonce' );
+    // var_dump($bcs_fileds);
 
-    $value = get_post_meta( $post->ID, '_global_notice', true );
+    # get current post id
+    $c_id = $post->ID;
 
-    echo '<textarea style="width:100%" id="global_notice" name="global_notice">' . esc_attr( $value ) . '</textarea>';
+    ## Get current Component Type
+    $c_cats = get_the_terms($c_id, 'component_type');
+
+    // var_dump($c_cats);
+
+    ## Check if current component have any component_type selected
+    if( is_array($c_cats) && count($c_cats) > 0 ){
+
+        # Get first component slug/key
+        $component_cat = $c_cats[0]->slug;
+
+        # Check if available categories have any field defined
+        if(array_key_exists($component_cat, $bcs_fileds)){
+            // echo "YYY";
+
+            # Get associative component fields from the array
+            $c_bcs_fileds = $bcs_fileds[$component_cat];
+
+            var_dump($c_bcs_fileds);
+
+
+        }
+
+    }
+
+
+
+
+
+    // echo '<textarea style="width:100%" id="global_notice" name="global_notice">' . esc_attr( $value ) . '</textarea>';
 }
 /*
 function save_global_notice_meta_box_data( $post_id ) {

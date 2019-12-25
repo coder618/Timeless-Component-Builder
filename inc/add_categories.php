@@ -29,7 +29,7 @@ function bcs_add_categories($bcs_fields){
             ucwords(str_replace("_"," ", $single_slug )),
             'component_type',
             [
-            'slug' => $single_slug
+            'slug' =>  strtolower($single_slug)
             ]
         );
         }  
