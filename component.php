@@ -11,6 +11,7 @@ class Basic_Component_System{
 
     public function __construct() {
         $this->reg_hooks();
+        $this->load_dependencies();
         // $this->register_cpt(); 
         // $this->register_taxonomies();
     }
@@ -91,6 +92,17 @@ class Basic_Component_System{
 
     }
 
+    private function load_dependencies() {
+		/**
+		 * ajax request handler
+		 */
+        require plugin_dir_path( __FILE__ ) .  'inc/generate-metabox.php';
+
+        /**
+		 *  shortcode register
+		 */
+        // require plugin_dir_path( __FILE__ ) .  'inc/register_shortcode.php';
+    }
 
 
     
@@ -118,8 +130,9 @@ class Basic_Component_System{
      */
     public function enqueue_assets() {
         wp_enqueue_style( 'bcs_component_style', plugin_dir_url( __FILE__ ). 'dist/bcs-style.css', [], 1, 'all' );
-    }
-    
+    }   
     
 }
 new Basic_Component_System();
+
+
