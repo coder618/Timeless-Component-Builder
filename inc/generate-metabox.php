@@ -23,20 +23,76 @@ add_action( 'add_meta_boxes', 'bcs_add_metaboxes' );
 
 
 function bcs_generate_fields( $post ) {
-    $value = get_post_meta( $post->ID, 'bcs_data', true );
+    ## get all the user defined fields
     $bcs_fileds = apply_filters( 'bcs__fileds', array());
 
     // var_dump($bcs_fileds);
 
     # get current post id
-    $c_id = $post->ID;
+    $post_id = $post->ID;
 
     ## Get current Component Type
-    $c_cats = get_the_terms($c_id, 'component_type');
+    $c_cats = get_the_terms($post_id, 'component_type');
 
     // var_dump($c_cats);
 
     ## Check if current component have any component_type selected
+    if( is_array($c_cats) && count($c_cats) > 0 ){
+
+        # Get first component slug/key
+        $component_cat = $c_cats[0]->slug;
+
+        # Check if available categories have any field defined
+        if(array_key_exists($component_cat, $bcs_fileds)){
+
+            $old_meta_data = get_post_meta( $post_id  ,'bcs_component_data', true );
+            $old_data_array = [];
+            
+            ## if have any old metadata saved
+            if($old_meta_data){                
+                $old_data_array = unserialize($old_meta_data);                
+            }
+
+            # Get associative component fields from the array
+            $c_bcs_fileds = $bcs_fileds[$component_cat];
+
+
+            foreach($c_bcs_fileds as $field):
+                if( count($old_data_array)  > 0){
+
+                    ## get the value from the previous save data
+                    $value = array_key_exists( $field['field'], $old_data_array ) ? $old_data_array[$field['field']]: '' ;
+                    
+                }
+                ## push the data in the current field
+                $field['value'] = $value;
+
+                if( $field['type'] == 'text' ){
+                    Bcs_fields::text($field);
+                }
+                if( $field['type'] == 'textarea' ){
+                    Bcs_fields::textarea($field);
+                }
+            endforeach;
+        }
+
+    }
+
+    print_r(get_post_meta( $post_id, 'bcs_component_data',true));
+
+
+}
+
+function save_global_notice_meta_box_data( $post_id ) {    
+    ## Get current Component Type
+    $c_cats = get_the_terms($post_id, 'component_type');
+
+    ## get all the user defined fields
+    $bcs_fileds = apply_filters( 'bcs__fileds', array());
+
+    ## define a empty array where we push the data
+    $array_to_save = [];
+
     if( is_array($c_cats) && count($c_cats) > 0 ){
 
         # Get first component slug/key
@@ -49,35 +105,31 @@ function bcs_generate_fields( $post ) {
             # Get associative component fields from the array
             $c_bcs_fileds = $bcs_fileds[$component_cat];
             foreach($c_bcs_fileds as $field):
-                if( $field['type'] == 'text' ){
-                    Bcs_fields::text($field);
-                }
-                if( $field['type'] == 'textarea' ){
-                    Bcs_fields::textarea($field);
-                }
+                $name = $field['field'];
+
+                ## check if the value present in the post array push the data
+                if( array_key_exists( $name, $_POST  )) :
+                    $array_to_save[$name] = $_POST[$name];
+                endif;
+
+
             endforeach;
 
+            ## save the data to post meta
+            update_post_meta( $post_id, 'bcs_component_data', serialize($array_to_save)  );
 
         }
 
     }
 
+    // var_dump($array_to_save);
 
-}
-/*
-function save_global_notice_meta_box_data( $post_id ) {
 
-    // Make sure that it is set.
-    if ( ! isset( $_POST['global_notice'] ) ) {
-        return;
-    }
+    // update_post_meta( $post_id, 'bcs_component_data', "defaule"  );
 
-    // Sanitize user input.
-    $my_data = sanitize_text_field( $_POST['global_notice'] );
 
-    // Update the meta field in the database.
-    update_post_meta( $post_id, '_global_notice', $my_data );
+
+
 }
 
 add_action( 'save_post', 'save_global_notice_meta_box_data' );
-*/

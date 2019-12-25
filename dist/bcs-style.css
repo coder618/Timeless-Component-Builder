@@ -12,6 +12,7 @@
 .single-field-wrapper textarea {
 	display: block;
 	width: 550px;
+	margin-top: 8px;
 }
 
 .single-field-wrapper label {
