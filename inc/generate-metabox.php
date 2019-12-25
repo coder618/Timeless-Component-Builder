@@ -63,16 +63,13 @@ function bcs_generate_fields( $post ) {
                     ## get the value from the previous save data
                     $value = array_key_exists( $field['field'], $old_data_array ) ? $old_data_array[$field['field']]: '' ;
                     
+                    ## push the data in the current field
+                    $field['value'] = $value;
                 }
-                ## push the data in the current field
-                $field['value'] = $value;
 
-                if( $field['type'] == 'text' ){
-                    Bcs_fields::text($field);
-                }
-                if( $field['type'] == 'textarea' ){
-                    Bcs_fields::textarea($field);
-                }
+                $fields_class = new Bcs_fields($field);
+
+                $fields_class->render_field();
             endforeach;
         }
 
@@ -121,14 +118,6 @@ function save_global_notice_meta_box_data( $post_id ) {
         }
 
     }
-
-    // var_dump($array_to_save);
-
-
-    // update_post_meta( $post_id, 'bcs_component_data', "defaule"  );
-
-
-
 
 }
 
