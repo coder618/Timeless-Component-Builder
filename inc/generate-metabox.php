@@ -11,10 +11,8 @@ function bcs_generate_fields( $post ) {
     # get current post id
     $post_id = $post->ID;
 
-    ## Get current Component Type
+    ## Get current Component Type categories
     $c_cats = get_the_terms($post_id, 'component_type');
-
-    // var_dump($c_cats);
 
     ## Check if current component have any component_type selected
     if( is_array($c_cats) && count($c_cats) > 0 ){

@@ -60,37 +60,6 @@ class Basic_Component_System{
         register_taxonomy( 'component_type', ['bcs_component'],  $args );
     }
 
-    // this function will register shortcode
-    public function register_shortcode($atts=[]) {
-        $html = '';
-        $func_name = '';
-        $id = '';
-
-        if(array_key_exists('cat', $atts) && !empty($atts['cat'])){
-            $func_name = 'bcs_component_'.$atts['cat'];
-        }else{
-            $html .= 'cat value not found in shortcode';
-        }
-
-        if(array_key_exists('id', $atts) && !empty($atts['id'])){
-            $id = $atts['id'];
-        }else{
-            $html .= ' ID value not found in shortcode';
-        }
-
-
-        if( empty($func_name) || empty($id)  ){
-            return $html;
-        }
-
-        if( function_exists( $func_name ) ){
-            $html .= $func_name( $id );
-        }else{
-            $html .= "Function Not Exist, Please define a Function ({$func_name}) and return the markup in html";
-        }
-        return $html;
-
-    }
 
     private function load_dependencies() {
 		/**
@@ -100,11 +69,8 @@ class Basic_Component_System{
         require plugin_dir_path( __FILE__ ) .  'inc/add_metabox.php';
         require plugin_dir_path( __FILE__ ) .  'inc/generate-metabox.php';
         require plugin_dir_path( __FILE__ ) .  'inc/save_metabox.php';
+        require plugin_dir_path( __FILE__ ) .  'inc/register_shortcode.php';
 
-        /**
-		 *  shortcode register
-		 */
-        // require plugin_dir_path( __FILE__ ) .  'inc/register_shortcode.php';
     }
 
 
@@ -121,7 +87,7 @@ class Basic_Component_System{
         add_action( 'init', [ $this, 'register_taxonomies' ], 2 );
         
         // register shortcode
-        add_shortcode( 'bcs_component', [ $this , 'register_shortcode' ] );
+        // add_shortcode( 'bcs_component', [ $this , 'register_shortcode' ] );
 
         add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_assets' ] );
                
