@@ -1,21 +1,17 @@
 <?php 
 require 'add_categories.php';
+require 'class-fields.php';
 
 
 
 function bcs_add_metaboxes() {
     $bcs_fileds = apply_filters( 'bcs__fileds', array());
     bcs_add_categories($bcs_fileds);
-    // var_dump($bcs_fileds);
-    
-
-
     add_meta_box(
         'bcs_metaboxes',
         __( 'Component Info', 'sitepoint' ),
         'bcs_generate_fields'
     );
-
 }
 
 add_action( 'add_meta_boxes', 'bcs_add_metaboxes' );
@@ -52,8 +48,14 @@ function bcs_generate_fields( $post ) {
 
             # Get associative component fields from the array
             $c_bcs_fileds = $bcs_fileds[$component_cat];
-
-            var_dump($c_bcs_fileds);
+            foreach($c_bcs_fileds as $field):
+                if( $field['type'] == 'text' ){
+                    Bcs_fields::text($field);
+                }
+                if( $field['type'] == 'textarea' ){
+                    Bcs_fields::textarea($field);
+                }
+            endforeach;
 
 
         }
@@ -61,10 +63,6 @@ function bcs_generate_fields( $post ) {
     }
 
 
-
-
-
-    // echo '<textarea style="width:100%" id="global_notice" name="global_notice">' . esc_attr( $value ) . '</textarea>';
 }
 /*
 function save_global_notice_meta_box_data( $post_id ) {

@@ -1,6 +1,22 @@
 .piklist-label-container {
-  padding-left: 10px !important;
+	padding-left: 10px !important;
 }
 .postbox .piklist-field {
-  padding-right: 10px !important;
+	padding-right: 10px !important;
+}
+
+.single-field-wrapper {
+	margin-bottom: 20px;
+}
+.single-field-wrapper input,
+.single-field-wrapper textarea {
+	display: block;
+	width: 550px;
+}
+
+.single-field-wrapper label {
+	margin-bottom: 10px;
+	font-size: 16px;
+	font-weight: 500;
+	text-transform: capitalize;
 }
