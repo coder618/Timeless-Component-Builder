@@ -18,7 +18,8 @@ function bcs_shortcode($atts=[]) {
     
     $file = file_exists($file_path);
     if( $file){
-        ob_start();
+        ob_start();        
+        set_query_var( 'bcs_id',$atts['id'] ) ;
         get_template_part( 'bcs/component-'. $cat_name );
         return ob_get_clean();
     }else{

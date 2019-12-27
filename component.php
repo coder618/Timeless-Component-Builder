@@ -70,6 +70,7 @@ class Basic_Component_System{
         require plugin_dir_path( __FILE__ ) .  'inc/generate-metabox.php';
         require plugin_dir_path( __FILE__ ) .  'inc/save_metabox.php';
         require plugin_dir_path( __FILE__ ) .  'inc/register_shortcode.php';
+        require plugin_dir_path( __FILE__ ) .  'inc/user_function.php';
 
     }
 

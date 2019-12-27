@@ -41,3 +41,21 @@ function bcs_generate_fields( $post ) {
 
 
 }
+
+
+
+function bcs_generate_shortcode(){
+    global  $post ;
+    $cat_attr = "";
+    $cats = get_the_terms( $post->ID, 'component_type' );
+    
+    if( is_array( $cats ) && count($cats) > 0 ){
+        $cat_name = $cats[0]->slug;
+        $cat_attr = 'cat="'.$cat_name.'"';
+    }
+
+    echo '
+        <h4> Shortcode: <pre>[bcs_component id="'.$post->ID.'" '.$cat_attr.' ]</pre> </h4> 
+    ';
+
+}
