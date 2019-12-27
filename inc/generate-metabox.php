@@ -31,7 +31,7 @@ function bcs_generate_fields( $post ) {
             ## generate meta box based on assigned field and 
             foreach($c_bcs_fileds as $field):                
                 $fields_class = new Bcs_fields($field, $saved_meta_data);
-                $fields_class->render_field();
+                echo $fields_class->render_field();
             endforeach;
         }
 

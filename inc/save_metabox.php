@@ -14,19 +14,45 @@ function save_global_notice_meta_box_data( $post_id ) {
         # Get first component slug/key
         $component_cat = $c_cats[0]->slug;
 
+
         # Check if available categories have any field defined
         if(array_key_exists($component_cat, $bcs_fileds)){
             // echo "YYY";
 
             # Get associative component fields from the array
             $c_bcs_fileds = $bcs_fileds[$component_cat];
+
+
+
+            
             foreach($c_bcs_fileds as $field):
                 $name = $field['field'];
 
-                ## check if the value present in the post array push the data
-                if( array_key_exists( $name, $_POST  )) :
-                    $array_to_save[$name] = $_POST[$name];
-                endif;
+                if( $field['type'] == 'repeater' ){
+                    
+                    /*----------- IF Repeater -------------*/
+                    $itt =  isset($_POST[$name]) && intval( count($_POST[$name])) ? intval( count($_POST[ $name ]) ) : 0;
+                    
+                    for( $i=0; $i< $itt ; $i++ ){
+
+                        foreach($field['fields'] as $child_field ){
+
+                            $c_name = $child_field['field'] ;
+                            $array_to_save[$name][$i][$c_name] = $_POST[$name][$i][$c_name];
+
+                        }                        
+                    }
+
+                    /*----------- END Repeater -------------*/
+
+
+                }else{
+                    ## check if the value present in the post array push the data
+                    if( array_key_exists( $name, $_POST  )) :
+                        $array_to_save[$name] = $_POST[$name];
+                    endif;
+                }
+
 
 
             endforeach;

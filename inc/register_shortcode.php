@@ -24,7 +24,7 @@ function bcs_shortcode($atts=[]) {
         return ob_get_clean();
     }else{
         return "Please Create a file at (". $file_path . ') To render the component';
-    }   
+    }
 
 }
 add_shortcode( 'bcs_component' , 'bcs_shortcode' );

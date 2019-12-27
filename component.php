@@ -62,9 +62,7 @@ class Basic_Component_System{
 
 
     private function load_dependencies() {
-		/**
-		 * ajax request handler
-		 */
+		
         require plugin_dir_path( __FILE__ ) .  'inc/add_categories.php';
         require plugin_dir_path( __FILE__ ) .  'inc/add_metabox.php';
         require plugin_dir_path( __FILE__ ) .  'inc/generate-metabox.php';

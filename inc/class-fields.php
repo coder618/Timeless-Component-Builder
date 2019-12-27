@@ -6,6 +6,7 @@ class Bcs_fields{
     public $value;
     public $label;
     public $type;
+    public $repeating_fields;
 
     // assign the data to the variable
     function __construct($data,$meta_data){ 
@@ -15,9 +16,19 @@ class Bcs_fields{
         $this->type = isset($data['type']) ? $data['type'] : '';   
 
         
-        $this->value = isset($data['value']) ? $data['value'] : '';
+        $this->repeating_fields = isset($data['fields']) ? $data['fields'] : [];   
+
+
+        
+        // // $this->value = isset($data['value']) ? $data['value'] : '';
+        // if( $this->va )
+
+        // isset($data['value'])
+
 
         $this->get_value($meta_data);
+
+
 
     }
 
@@ -33,21 +44,77 @@ class Bcs_fields{
     }
 
 
-    public function render_field(  ){       
+    public function render_field( $a_type = false ){       
+        $type = $a_type ? $a_type : $this->type;
 
         if( $this->type == 'textarea' ){
-            echo $this->textarea();
+            return $this->textarea();
         }
 
         if( $this->type == 'text' ){
-            echo $this->text();
+            return $this->text();
         }
 
         if( $this->type == 'file' ){
-            echo $this->file_field();
+            return $this->file_field();
+        }
+
+        if( $this->type == 'repeater' ){
+            return $this->repeater();
         }
 
 
+    }
+
+    function repeater(){
+
+        $child_fields = '';
+        // $items_currently_have  =  is_array($this->value)  ?  count($this->value) : 0 ;
+        $items_currently_have  = is_array($this->value) ? count($this->value) : 1  ;
+        $name = $this->name;
+        // echo $this->name;
+        
+        // print_r($this->value);
+
+        for( $i=0;  $items_currently_have > $i ; $i++ )  {
+            $child_fields .= '<div class="single-item-wrapper">';
+                foreach ($this->repeating_fields as $k => $single_field){
+                    // $single_field_name = $single_field['field'];
+                    $c_name = $single_field['field'];
+
+                    // modify the variable before print child component 
+                    $single_field['field'] = "{$name}[$i][$c_name]";
+
+                    if( isset($this->value[$i][$c_name]) ) {
+                        $single_field['value'] = $this->value[$i][$c_name];
+
+                    }else{
+                        $single_field['value'] = "n";
+                    }
+
+                    if( $single_field['type'] == 'textarea' ){
+                        $child_fields .= $this->textarea($single_field);
+                    }
+            
+                    if( $single_field['type'] == 'text' ){
+                        $child_fields .= $this->text($single_field);
+                    }        
+                }
+
+            $child_fields .= '</div>';
+
+        }
+
+        $html = '
+            <div class="repeater-fileds">
+                <input type="hidden" name="'.$this->name.'_count" value="'.$items_currently_have.'" />
+                <div class="multiple-fileds-wrapper">
+                    '.$child_fields.'            
+                </div>
+            </div>        
+        ';
+        return $html;
+        
     }
 
 
@@ -65,24 +132,36 @@ class Bcs_fields{
 
     }
 
-    public function text(){
+    public function text( $field_data = [] ){
+
+        $name = isset( $field_data['field'] ) ? $field_data['field'] : $this->name;
+        $value = isset( $field_data['value'] ) ? $field_data['value'] : $this->value;
+        $placeholder = isset( $field_data['placeholder'] ) ? $field_data['placeholder'] : $this->placeholder;
+        $label = isset( $field_data['label'] ) ? $field_data['label'] : $this->label;
+
+
+
+
         return'
         <div class="single-field-wrapper">
-            <label for="'.$this->name.'" >'.$this->label.'
-                <input type="text" name="'.$this->name.'" placeholder="'.$this->placeholder.'" value="'.$this->value.'" /> 
+            <label for="'.$name.'" >'.$label.'
+                <input type="text" name="'.$name.'" placeholder="'.$placeholder.'" value="'.$value.'" /> 
             </label>
         </div>   
         ';
-
     }
 
 
-    public function textarea(){
+    public function textarea($field_data = []){
+        $name = isset( $field_data['field'] ) ? $field_data['field'] : $this->name;
+        $value = isset( $field_data['value'] ) ? $field_data['value'] : $this->value;
+        $placeholder = isset( $field_data['placeholder'] ) ? $field_data['placeholder'] : $this->placeholder;
+        $label = isset( $field_data['label'] ) ? $field_data['label'] : $this->label;
 
         return '
         <div class="single-field-wrapper">
-            <label for="'.$this->name.'" >'.$this->label.'
-                <textarea type="text" name="'.$this->name.'" placeholder="'.$this->placeholder.'" >'.$this->value.'</textarea>
+            <label for="'.$name.'" >'.$label.'
+                <textarea type="text" name="'.$name.'" placeholder="'.$placeholder.'" >'.$value.'</textarea>
             </label>
         </div>        
         ';        
