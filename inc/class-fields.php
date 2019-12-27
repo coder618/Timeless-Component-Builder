@@ -8,12 +8,28 @@ class Bcs_fields{
     public $type;
 
     // assign the data to the variable
-    function __construct($data){ 
+    function __construct($data,$meta_data){ 
         $this->name = isset($data['field']) ? $data['field'] : '';
         $this->placeholder = isset($data['placeholder']) ? $data['placeholder'] : '';
-        $this->value = isset($data['value']) ? $data['value'] : '';
         $this->label = isset($data['label']) ? $data['label'] : '';
-        $this->type = isset($data['type']) ? $data['type'] : '';        
+        $this->type = isset($data['type']) ? $data['type'] : '';   
+
+        
+        $this->value = isset($data['value']) ? $data['value'] : '';
+
+        $this->get_value($meta_data);
+
+    }
+
+    
+    public function get_value ($saved_meta_data){       
+            
+        ## if have any old metadata saved
+        if($saved_meta_data){                
+            $saved_meta_data = unserialize($saved_meta_data);                
+            $value = is_array($saved_meta_data) && count($saved_meta_data) > 0 && array_key_exists($this->name,$saved_meta_data )? $saved_meta_data[$this->name]: '';
+            $this->value = $value;
+        }
     }
 
 

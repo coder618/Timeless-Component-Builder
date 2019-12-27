@@ -23,31 +23,14 @@ function bcs_generate_fields( $post ) {
         # Check if available categories have any field defined
         if(array_key_exists($component_cat, $bcs_fileds)){
 
-            $old_meta_data = get_post_meta( $post_id  ,'bcs_component_data', true );
-            $old_data_array = [];
+            $saved_meta_data = get_post_meta( $post_id  ,'bcs_component_data', true );
             
-            
-            ## if have any old metadata saved
-            if($old_meta_data){                
-                $old_data_array = unserialize($old_meta_data);                
-            }
-
-            # Get associative component fields from the array
+            # Get assigned component fields from the array
             $c_bcs_fileds = $bcs_fileds[$component_cat];
 
-
-            foreach($c_bcs_fileds as $field):
-                if( count($old_data_array)  > 0){
-
-                    ## get the value from the previous save data
-                    $value = array_key_exists( $field['field'], $old_data_array ) ? $old_data_array[$field['field']]: '';
-                    
-                    // ## push the data in the current field
-                    $field['value'] = $value;
-                }
-
-                $fields_class = new Bcs_fields($field, $value);
-
+            ## generate meta box based on assigned field and 
+            foreach($c_bcs_fileds as $field):                
+                $fields_class = new Bcs_fields($field, $saved_meta_data);
                 $fields_class->render_field();
             endforeach;
         }

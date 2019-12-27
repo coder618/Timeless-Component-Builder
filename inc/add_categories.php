@@ -1,6 +1,7 @@
 <?php 
 /**
- * This function will add categories based to the provided associative array keys
+ * This function will add categories based to the provided 
+ * associative array keys
  * 
  */
 function bcs_add_categories($bcs_fields){
