@@ -26,6 +26,7 @@ function bcs_generate_fields( $post ) {
             $old_meta_data = get_post_meta( $post_id  ,'bcs_component_data', true );
             $old_data_array = [];
             
+            
             ## if have any old metadata saved
             if($old_meta_data){                
                 $old_data_array = unserialize($old_meta_data);                
@@ -39,13 +40,13 @@ function bcs_generate_fields( $post ) {
                 if( count($old_data_array)  > 0){
 
                     ## get the value from the previous save data
-                    $value = array_key_exists( $field['field'], $old_data_array ) ? $old_data_array[$field['field']]: '' ;
+                    $value = array_key_exists( $field['field'], $old_data_array ) ? $old_data_array[$field['field']]: '';
                     
-                    ## push the data in the current field
+                    // ## push the data in the current field
                     $field['value'] = $value;
                 }
 
-                $fields_class = new Bcs_fields($field);
+                $fields_class = new Bcs_fields($field, $value);
 
                 $fields_class->render_field();
             endforeach;

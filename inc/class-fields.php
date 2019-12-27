@@ -27,6 +27,25 @@ class Bcs_fields{
             echo $this->text();
         }
 
+        if( $this->type == 'file' ){
+            echo $this->file_field();
+        }
+
+
+    }
+
+
+    public function file_field(){
+
+        return '
+            <div class="single-field-wrapper">
+                <label for="'.$this->name.'" >'.$this->label.'
+                    <input type="hidden" name="'.$this->name.'" placeholder="'.$this->placeholder.'" value="'.$this->value.'" id="'.$this->name.'" />                     
+                    <button type="button" class="button media-uplooad-btn" data-media-uploader-target="#'.$this->name.'">Upload Media</button>
+                </label>
+                <p class="selected-file">'.$this->value.'</p>
+            </div>   
+        ';
 
     }
 

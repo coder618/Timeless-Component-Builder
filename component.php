@@ -99,6 +99,8 @@ class Basic_Component_System{
      */
     public function enqueue_assets() {
         wp_enqueue_style( 'bcs_component_style', plugin_dir_url( __FILE__ ). 'dist/bcs-style.css', [], 1, 'all' );
+        // wp_enqueue_script( 'bcs_component_script', plugin_dir_url( __FILE__ ). 'dist/bcs-script.js', ['jquery'], 1 );
+        wp_enqueue_script( 'bcs_component_script', plugin_dir_url( __FILE__ ) . 'dist/bcs-script.js', array(), '1.0' );
     }   
     
 }
