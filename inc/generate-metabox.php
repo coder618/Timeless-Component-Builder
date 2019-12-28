@@ -1,5 +1,9 @@
 <?php 
 require 'class-fields.php';
+/**
+ * This function will call the TCB_fields class and generate the HTML output
+ * 
+ */
 
 
 function tcb_generate_fields( $post ) {
@@ -33,19 +37,20 @@ function tcb_generate_fields( $post ) {
 
             ## generate meta box based on assigned field and 
             foreach($c_tcb_fileds as $field):                
-                $fields_class = new tcb_fields($field, $saved_meta_data);
+                $fields_class = new TCB_fields($field, $saved_meta_data);
                 echo $fields_class->render_field();
             endforeach;
         }
 
     }
 
-    // print_r(get_post_meta( $post_id, 'tcb_component_data',true));
-
-
 }
 
-
+/**
+ * This function will generate shortcode
+ *  which user can copy and past
+ *  it where they want to use the component * 
+ */
 
 function tcb_generate_shortcode(){
     global  $post ;

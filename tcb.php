@@ -1,19 +1,18 @@
 <?php
 /**
- * Plugin Name: Basic Component System
- * Description: Build Basic Component With the help of Piklist
+ * Plugin Name: Timeless Component Builder
+ * Description: Build Solid and Timeless Component, And Deliver Project Faster 
  * Author: coder618
  * Author URI: https://coder618.github.io
  * Version: 1.0.0 
- * Text Domain : basic-component
+ * Text Domain : tcb
 */
 class TCB_Main{
 
     public function __construct() {
         $this->reg_hooks();
         $this->load_dependencies();
-        // $this->register_cpt(); 
-        // $this->register_taxonomies();
+        
     }
 
     /* Register Custom Post Type */
@@ -21,15 +20,14 @@ class TCB_Main{
         register_post_type( 'tcb_component',
             array(
                 'labels' => array(
-                    'name' => __( 'Components', 'basic-component' ),
-                    'singular_name' => __( 'Component', 'basic-component' )
+                    'name' => __( 'Components', 'tcb' ),
+                    'singular_name' => __( 'Component', 'tcb' )
                 ),
                 'public' => true,
                 'has_archive' => false,
                 'publicly_queryable' =>false,
                 'show_in_rest' => false,
-                'supports' => [ 'title', 'thumbnail', ],
-                // 'rewrite' => array('slug' => 'bc_components'),
+                'supports' => [ 'title' ],
             )
         );
     }
@@ -40,13 +38,13 @@ class TCB_Main{
 
         // Add new taxonomy, make it hierarchical (like categories)
         $labels = array(
-            'name'              => _x( 'Component Type', 'taxonomy general name', 'textdomain' ),
-            'singular_name'     => _x( 'Component Type', 'taxonomy singular name', 'textdomain' ),
-            'search_items'      => __( 'Search Component Type', 'textdomain' ),
-            'all_items'         => __( 'All Types', 'textdomain' ),            
-            'add_new_item'      => __( 'Add New Component Type', 'textdomain' ),
-            'new_item_name'     => __( 'New Component Type Name', 'textdomain' ),
-            'menu_name'         => __( 'Component Type', 'textdomain' ),
+            'name'              => _x( 'Component Type', 'taxonomy general name', 'tcb' ),
+            'singular_name'     => _x( 'Component Type', 'taxonomy singular name', 'tcb' ),
+            'search_items'      => __( 'Search Component Type', 'tcb' ),
+            'all_items'         => __( 'All Types', 'tcb' ),            
+            'add_new_item'      => __( 'Add New Component Type', 'tcb' ),
+            'new_item_name'     => __( 'New Component Type Name', 'tcb' ),
+            'menu_name'         => __( 'Component Type', 'tcb' ),
         );
 
         $args = array(
@@ -75,7 +73,7 @@ class TCB_Main{
 
     
     /**
-     * All the Hook of this plugin will register/call within this method
+     * Some Hook of this plugin will register/call within this method
      * 
      */
     private function reg_hooks(){
@@ -97,7 +95,7 @@ class TCB_Main{
         wp_enqueue_style( 'tcb_component_style', plugin_dir_url( __FILE__ ). 'dist/tcb-style.css', [], 1, 'all' );
         wp_enqueue_script( 'tcb_component_script', plugin_dir_url( __FILE__ ) . 'dist/tcb-script.js', array(), '1.0' );
         wp_enqueue_script( 'repeater-js', plugin_dir_url( __FILE__ ) . 'dist/repeater.js', array('jquery'), '1.0' );
-    }   
+    }
     
 }
 new TCB_Main();

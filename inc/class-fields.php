@@ -1,6 +1,16 @@
 <?php 
+/**
+ * This class will generate html field fields
+ * receive argument: $data, $saved_meta_data
+ * $data: a field information 
+ * example: 
+ * [  type: text, field: title, label: User Seen Label as string ]
+ * 
+ * $saved_meta_data : current saved component meta data 
+ */
 
-class tcb_fields{
+
+class TCB_fields{
     public $name;
     public $placeholder;
     public $value;
@@ -123,10 +133,7 @@ class tcb_fields{
 
         $name = isset( $field_data['field'] ) ? $field_data['field'] : $this->name;
         $value = isset( $field_data['value'] ) ? $field_data['value'] : $this->value;
-        // $placeholder = isset( $field_data['placeholder'] ) ? $field_data['placeholder'] : $this->placeholder;
         $label = isset( $field_data['label'] ) ? $field_data['label'] : $this->label;
-
-        
 
         return '
             <div class="single-field-wrapper">
@@ -171,5 +178,8 @@ class tcb_fields{
         </div>        
         ';        
     }
+
+
+
 
 }

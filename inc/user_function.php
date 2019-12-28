@@ -1,6 +1,7 @@
 <?php 
 /**
- * This file will contain some function which will be helpful for user
+ * This file contain some function which will be helpful for user
+ * as well as for the plugin use case
  * 
  */
 function tcb_data(){

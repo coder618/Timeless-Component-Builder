@@ -1,6 +1,9 @@
 <?php 
+/**
+ * this function will register the shortcode in the wordpress system.
+ * so that user can use it
+ */
 
- // this function will register shortcode
 function tcb_shortcode($atts=[]) {
     $html = '';
     $func_name = '';

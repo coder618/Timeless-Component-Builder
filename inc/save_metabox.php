@@ -1,4 +1,10 @@
 <?php 
+/**
+ * This function will call every time when a post save
+ * This function is responsible for saving component 
+ * meta data to dashboard
+ * 
+ */
 function save_global_notice_meta_box_data( $post_id ) {    
 
     // verify this came from the our screen and with proper authorization.

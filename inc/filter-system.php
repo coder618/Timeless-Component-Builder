@@ -1,4 +1,8 @@
 <?php 
+/**
+ * A filter for adding field in the component 
+ * 
+ */
 function tcb_fields( $incoming_arg ){	
 	return $arr;
 }
