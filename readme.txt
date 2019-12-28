@@ -12,8 +12,8 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 == Description ==
 This plugin will help developer to build solid component.
 This plugin based on some wordpress core function like : add_filter , meta box , Custom post type, 
-thats why you can consider this plugin is a timeless plugin, because i dont think wordpress going to replace 
-this function in the.
+thats why you can consider this plugin is a timeless plugin, because i dont think WordPress going to replace 
+this function in the feature.
 
 
 == Installation ==
