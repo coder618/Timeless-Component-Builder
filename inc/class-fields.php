@@ -99,8 +99,7 @@ class Bcs_fields{
                         $child_fields .= $this->text($single_field);
                     }
                     if( $single_field['type'] == 'file' ){   
-                        var_dump($this->value);
-
+                        // var_dump($this->value);
                         $child_fields .= $this->file_field($single_field);
                     }
                     
@@ -140,7 +139,7 @@ class Bcs_fields{
             <div class="single-field-wrapper">
                 <label for="'.$name.'" >'.$label.'
                     <input type="hidden" name="'.$name.'" value="'.$value.'" id="'.$name.'" />                     
-                    <button type="button" class="button media-uplooad-btn" data-media-uploader-target="#'.$name.'">Upload Media</button>
+                    <button type="button" class="button media-uplooad-btn">Upload Media</button>
                 </label>
                 <p class="selected-file">'.$value.'</p>
             </div>   

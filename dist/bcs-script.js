@@ -12,6 +12,7 @@ jQuery(document).ready(function($) {
 
 	$("body").on("click", "button.media-uplooad-btn", function(e) {
 		// Get the btn
+		// console.log("clicked");
 		// var btn = e.target;
 
 		// Check if it's the upload button
@@ -24,44 +25,47 @@ jQuery(document).ready(function($) {
 		// e.preventDefault();
 
 		// check if "data-media-uploader-target" attribute present
-		if ($(this).attr("data-media-uploader-target")) {
-			e.preventDefault();
-			var targetInputField = $(this).data("media-uploader-target");
+		// if ($(this).attr("data-media-uploader-target")) {
+		e.preventDefault();
+		// var targetInputField = $(this).attr("name");
 
-			// Sets up the media library frame
-			metaImageFrame = wp.media.frames.metaImageFrame = wp.media({
-				title: "Upload File",
-				button: { text: "Use this file" },
-			});
+		var $btn = $(this);
 
-			// Runs when an image is selected.
-			metaImageFrame.on("select", function() {
-				// Grabs the attachment selection and creates a JSON representation of the model.
-				var media_attachment = metaImageFrame
-					.state()
-					.get("selection")
-					.first()
-					.toJSON();
+		// Sets up the media library frame
+		metaImageFrame = wp.media.frames.metaImageFrame = wp.media({
+			title: "Upload File",
+			button: { text: "Use this file" },
+		});
 
-				// Sends the attachment URL to our custom image input field.
-				$(targetInputField).val(media_attachment.url);
-				console.log(
-					"Target > ",
-					targetInputField,
-					" url >",
-					media_attachment.url,
-				);
+		// Runs when an image is selected.
+		metaImageFrame.on("select", function() {
+			// Grabs the attachment selection and creates a JSON representation of the model.
+			var media_attachment = metaImageFrame
+				.state()
+				.get("selection")
+				.first()
+				.toJSON();
 
-				$(this)
-					.parents(".single-field-wrapper")
-					.find(".selected-file")
-					.text(media_attachment.title);
-				// console.log(media_attachment.url);
-			});
+			// Sends the attachment URL to our custom image input field.
+			// $(targetInputField).val(media_attachment.url);
+			// console.log(
+			// 	"Target > ",
+			// 	targetInputField,
+			// 	" url >",
+			// 	media_attachment.url,
+			// );
+			$btn.parents(".single-field-wrapper")
+				.find("input")
+				.val(media_attachment.url);
 
-			// Opens the media library frame.
-			metaImageFrame.open();
-		}
+			$btn.parents(".single-field-wrapper")
+				.find(".selected-file")
+				.text(media_attachment.title);
+			// console.log(media_attachment.url);
+		});
+
+		// Opens the media library frame.
+		metaImageFrame.open();
 	});
 
 	/**
