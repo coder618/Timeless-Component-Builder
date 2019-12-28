@@ -100,6 +100,7 @@ class Basic_Component_System{
         wp_enqueue_style( 'bcs_component_style', plugin_dir_url( __FILE__ ). 'dist/bcs-style.css', [], 1, 'all' );
         // wp_enqueue_script( 'bcs_component_script', plugin_dir_url( __FILE__ ). 'dist/bcs-script.js', ['jquery'], 1 );
         wp_enqueue_script( 'bcs_component_script', plugin_dir_url( __FILE__ ) . 'dist/bcs-script.js', array(), '1.0' );
+        wp_enqueue_script( 'repeater-js', plugin_dir_url( __FILE__ ) . 'dist/repeater.js', array('jquery'), '1.0' );
     }   
     
 }

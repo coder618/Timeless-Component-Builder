@@ -68,18 +68,18 @@ class Bcs_fields{
 
     function repeater(){
 
-        $child_fields = '';
-        // $items_currently_have  =  is_array($this->value)  ?  count($this->value) : 0 ;
+        $child_fields = '';        
         $items_currently_have  = is_array($this->value) ? count($this->value) : 1  ;
         $name = $this->name;
-        // echo $this->name;
+        
         
         // print_r($this->value);
 
         for( $i=0;  $items_currently_have > $i ; $i++ )  {
-            $child_fields .= '<div class="single-item-wrapper">';
+            $child_fields .= '<div class="single-item-wrapper" data-repeater-item>';
                 foreach ($this->repeating_fields as $k => $single_field){
-                    // $single_field_name = $single_field['field'];
+                    
+                    // 
                     $c_name = $single_field['field'];
 
                     // modify the variable before print child component 
@@ -87,7 +87,6 @@ class Bcs_fields{
 
                     if( isset($this->value[$i][$c_name]) ) {
                         $single_field['value'] = $this->value[$i][$c_name];
-
                     }else{
                         $single_field['value'] = "n";
                     }
@@ -98,8 +97,17 @@ class Bcs_fields{
             
                     if( $single_field['type'] == 'text' ){
                         $child_fields .= $this->text($single_field);
-                    }        
+                    }
+                    if( $single_field['type'] == 'file' ){   
+                        var_dump($this->value);
+
+                        $child_fields .= $this->file_field($single_field);
+                    }
+                    
+
+
                 }
+                $child_fields .='<input data-repeater-delete type="button" value="Delete"/>';
 
             $child_fields .= '</div>';
 
@@ -108,9 +116,10 @@ class Bcs_fields{
         $html = '
             <div class="repeater-fileds">
                 <input type="hidden" name="'.$this->name.'_count" value="'.$items_currently_have.'" />
-                <div class="multiple-fileds-wrapper">
+                <div class="multiple-fileds-wrapper" data-repeater-list="'.$this->name.'">
                     '.$child_fields.'            
                 </div>
+                <input data-repeater-create type="button" value="Add"/>
             </div>        
         ';
         return $html;
@@ -118,15 +127,22 @@ class Bcs_fields{
     }
 
 
-    public function file_field(){
+    public function file_field($field_data = []){
+
+        $name = isset( $field_data['field'] ) ? $field_data['field'] : $this->name;
+        $value = isset( $field_data['value'] ) ? $field_data['value'] : $this->value;
+        // $placeholder = isset( $field_data['placeholder'] ) ? $field_data['placeholder'] : $this->placeholder;
+        $label = isset( $field_data['label'] ) ? $field_data['label'] : $this->label;
+
+        
 
         return '
             <div class="single-field-wrapper">
-                <label for="'.$this->name.'" >'.$this->label.'
-                    <input type="hidden" name="'.$this->name.'" placeholder="'.$this->placeholder.'" value="'.$this->value.'" id="'.$this->name.'" />                     
-                    <button type="button" class="button media-uplooad-btn" data-media-uploader-target="#'.$this->name.'">Upload Media</button>
+                <label for="'.$name.'" >'.$label.'
+                    <input type="hidden" name="'.$name.'" value="'.$value.'" id="'.$name.'" />                     
+                    <button type="button" class="button media-uplooad-btn" data-media-uploader-target="#'.$name.'">Upload Media</button>
                 </label>
-                <p class="selected-file">'.$this->value.'</p>
+                <p class="selected-file">'.$value.'</p>
             </div>   
         ';
 
