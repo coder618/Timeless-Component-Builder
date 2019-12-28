@@ -1,4 +1,4 @@
-=== Render Posts ===
+=== Timeless Component Builder ===
 Contributors: coder618
 Donate link: https://coder618.github.io
 Tags: Component System, Component Builder
@@ -33,7 +33,7 @@ Yes, You can, use this plugin with other builder like : gutenberg, elementor, Co
 
 
 == Screenshots ==
-.
+No available now.
 
 == Changelog ==
 
@@ -49,11 +49,11 @@ First relase.
 == How to Create Component: ==
 There are Only 2 step you have to follow to create a component, which is
 1. Create Component Fields
-2. Create Component Rendering Template (a .php file)
+2. Create Component Rendering Template (a .php file, you can use HTML markup there too)
 
 Detail:
 Step 1: 
-To add a component Field first you have to define a function with any name you want. 
+To Create a component Field first you have to define a function with any name you want. 
 Then you need to add those function in a filter hook name ---- tcb__fileds -----
 
 example:
@@ -84,57 +84,11 @@ After that all the user provided data will store in the $component_data variable
 
 Now you can use the data as per your application need.
 
-Isn't that simple.
+Isn't that simple ?
 
+== How to use a component  ==
+1. From Dashboard, go to Component->Add New
+2. Give a name and Select the Component Type/Category and publish/update the post
+3. You will find Component Related field, will be available below the title, user can provide the necessary data in the related field and update the post.
+4. Copy the shortcode where you want to render/view the component.
 
-
-
-
-
-Shortcode : [render-posts]
-Available Arguments : 
-1. *type = "You Post type " 
-1. number = "Posts Per Page" -- if not specify it will inherit from wordpress global posts_per_page option serttings.
-1. title = "Section title"
-1. detail = "Section Detail"
-1. noloadmore = "true" -- Set it if you dont want to show loadmore button
-
-*required field.
-
-eg. [render-posts type="post"]
-
-== Technical documentation ==
-How to add Custom Post template.
-
-To make a custom post template you have to crate a php function with a specific name. 
-And Your function have to RETURN(NOT echo) the whole markup as a string. This function will have one argument post id.
-
-Function Name: postType_template($post_id) ,
-eg: post_template($post_id) , event_template($post_id), member_template($post_id) for post, event and member Post Type.
-
-Example function:
-// Template For Post post type.
-`
-function  post_template($id){
-        $c_id = $id; 
-        $post_img_url = get_the_post_thumbnail_url($c_id, 'large');
-        $title = esc_html(get_the_title($c_id));
-        $html = '';
-        $html .= '<a href="'.get_permalink($c_id).'" class="default-post-template">';
-            if($post_img_url):
-                $html .= '<img src="'.$post_img_url.'" alt="'.$title.'">';
-            endif;            
-            $html .= '<div class="text-section">';
-                $html .= '<h3 class="title">'.$title.'</h3>';
-                $html .= '<p>'.get_the_excerpt($c_id).'</p>';
-            $html .= '</div>';
-        $html .= '</a>';
-        return $html;
-}
-`
-
-Your defined  template function will receive a single post id  as its first argument. you can use the id to manupulate/make the posts markup for post/cpt template.
-After create the function, you have to Attached/link your created function to function.php or via other plugin so that your created function can be access from any place from the wordpress.
-
-
-Note : You have to return the markup, you cant echo the markup from the function. It can  cause error.
