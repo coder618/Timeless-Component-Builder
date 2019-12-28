@@ -56,12 +56,15 @@ jQuery(document).ready(function($) {
 			// );
 			$btn.parents(".single-field-wrapper")
 				.find("input")
-				.val(media_attachment.url);
+				.attr("value", media_attachment.url);
+
+			// $btn.parents(".single-field-wrapper")
+			// 	.find(".selected-file")
+			// 	.text(media_attachment.url);
 
 			$btn.parents(".single-field-wrapper")
 				.find(".selected-file")
-				.text(media_attachment.title);
-			// console.log(media_attachment.url);
+				.text(media_attachment.url);
 		});
 
 		// Opens the media library frame.
@@ -77,6 +80,9 @@ jQuery(document).ready(function($) {
 			initEmpty: false,
 			show: function() {
 				$(this).slideDown();
+				$(this)
+					.find(".selected-file")
+					.html("");
 			},
 
 			hide: function(deleteElement) {

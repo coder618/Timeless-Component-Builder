@@ -1,6 +1,6 @@
 <?php 
 
-class Bcs_fields{
+class tcb_fields{
     public $name;
     public $placeholder;
     public $value;
@@ -130,9 +130,9 @@ class Bcs_fields{
 
         return '
             <div class="single-field-wrapper">
-                <label for="'.$name.'" >'.$label.'
-                    <input  type="text" name="'.$name.'" value="'.$value.'" id="'.$name.'" disabled />                     
-                </label>                
+                <label for="'.$name.'" >'.$label.'</label>     
+                <input  type="hidden" name="'.$name.'" value="'.$value.'" id="'.$name.'" />   
+                <p class="selected-file">'.$value.'</p>
                 <button type="button" class="button media-uplooad-btn">Upload Media</button>
             </div>   
         ';

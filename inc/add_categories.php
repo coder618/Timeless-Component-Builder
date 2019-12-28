@@ -4,7 +4,7 @@
  * associative array keys
  * 
  */
-function bcs_add_categories($bcs_fields){
+function tcb_add_categories($tcb_fields){
     
     // create the component categories if not created
     $registered_component_type = get_terms( array(
@@ -13,7 +13,7 @@ function bcs_add_categories($bcs_fields){
     ));
     
     // collect all the component type in a index base array
-    $custom_component_slugs = array_keys($bcs_fields);
+    $custom_component_slugs = array_keys($tcb_fields);
     
     // collect all the Registered slug in a index base array
     $registered_component_slug = [];

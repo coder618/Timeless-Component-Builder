@@ -1,25 +1,23 @@
 <?php 
-function bcs_add_metaboxes() {
-    $bcs_fileds = apply_filters( 'bcs__fileds', array());
-    bcs_add_categories($bcs_fileds);
+function tcb_add_metaboxes() {
+    $tcb_fileds = apply_filters( 'tcb__fileds', array());
+    tcb_add_categories($tcb_fileds);
 
-    // if( get_post_type($post->ID)== 'bcs_component' ) :
         add_meta_box(
-            'bcs_metaboxes',
+            'tcb_metaboxes',
             __( 'Component Info', 'sitepoint' ),
-            'bcs_generate_fields',
-            'bcs_component'
+            'tcb_generate_fields',
+            'tcb_component'
         );
 
 
         add_meta_box(
-            'bcs_metaboxes_shortcode_info',
+            'tcb_metaboxes_shortcode_info',
             __( 'Component Shortcode', 'sitepoint' ),
-            'bcs_generate_shortcode',
-            'bcs_component'
+            'tcb_generate_shortcode',
+            'tcb_component'
         );
     // endif;
-
 }
 
-add_action( 'add_meta_boxes', 'bcs_add_metaboxes' );
+add_action( 'add_meta_boxes', 'tcb_add_metaboxes' );

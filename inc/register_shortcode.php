@@ -1,7 +1,7 @@
 <?php 
 
  // this function will register shortcode
-function bcs_shortcode($atts=[]) {
+function tcb_shortcode($atts=[]) {
     $html = '';
     $func_name = '';
     $id = '';
@@ -14,17 +14,17 @@ function bcs_shortcode($atts=[]) {
     }   
     
     ## check the file existency
-    $file_path = get_template_directory() .'/bcs/component-'. $cat_name.'.php';
+    $file_path = get_template_directory() .'/tcb/component-'. $cat_name.'.php';
     
     $file = file_exists($file_path);
     if( $file){
         ob_start();        
-        set_query_var( 'bcs_id',$atts['id'] ) ;
-        get_template_part( 'bcs/component-'. $cat_name );
+        set_query_var( 'tcb_id',$atts['id'] ) ;
+        get_template_part( 'tcb/component-'. $cat_name );
         return ob_get_clean();
     }else{
         return "Please Create a file at (". $file_path . ') To render the component';
     }
 
 }
-add_shortcode( 'bcs_component' , 'bcs_shortcode' );
+add_shortcode( 'tcb_component' , 'tcb_shortcode' );

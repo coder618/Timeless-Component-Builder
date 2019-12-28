@@ -1,8 +1,8 @@
 <?php 
-function bcs_fields( $incoming_arg ){	
+function tcb_fields( $incoming_arg ){	
 	return $arr;
 }
 
-add_filter( 'bcs_fields_filter' , 'bcs_fields' , 10, 1  );
+add_filter( 'tcb_fields_filter' , 'tcb_fields' , 10, 1  );
 
 

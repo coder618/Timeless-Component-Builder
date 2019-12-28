@@ -44,3 +44,13 @@
 	height: 41px;
 	/* font-weight: 700; */
 }
+
+p.selected-file {
+	max-width: 550px;
+	font-size: 12px;
+	line-height: 2;
+	padding: 0 5px;
+	background: #ececec;
+	color: #000;
+	border-radius: 3px;
+}

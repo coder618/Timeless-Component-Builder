@@ -18,7 +18,7 @@ class TCB_Main{
 
     /* Register Custom Post Type */
     public function register_CPT() {
-        register_post_type( 'bcs_component',
+        register_post_type( 'tcb_component',
             array(
                 'labels' => array(
                     'name' => __( 'Components', 'basic-component' ),
@@ -57,7 +57,7 @@ class TCB_Main{
             'query_var'         => false,
             // 'rewrite'           => array( 'slug' => 'genre' ),
         );
-        register_taxonomy( 'component_type', ['bcs_component'],  $args );
+        register_taxonomy( 'component_type', ['tcb_component'],  $args );
     }
 
 
@@ -83,13 +83,10 @@ class TCB_Main{
         add_action( 'init', [ $this, 'register_CPT' ], 1 );
         
         // add taxonomies hook
-        add_action( 'init', [ $this, 'register_taxonomies' ], 2 );
-        
-        // register shortcode
-        // add_shortcode( 'bcs_component', [ $this , 'register_shortcode' ] );
+        add_action( 'init', [ $this, 'register_taxonomies' ], 2 );        
 
-        add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_assets' ] );
-               
+        // Enqueue hook
+        add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_assets' ] );               
         
     }
     /**
@@ -97,9 +94,8 @@ class TCB_Main{
      * 
      */
     public function enqueue_assets() {
-        wp_enqueue_style( 'bcs_component_style', plugin_dir_url( __FILE__ ). 'dist/bcs-style.css', [], 1, 'all' );
-        // wp_enqueue_script( 'bcs_component_script', plugin_dir_url( __FILE__ ). 'dist/bcs-script.js', ['jquery'], 1 );
-        wp_enqueue_script( 'bcs_component_script', plugin_dir_url( __FILE__ ) . 'dist/bcs-script.js', array(), '1.0' );
+        wp_enqueue_style( 'tcb_component_style', plugin_dir_url( __FILE__ ). 'dist/tcb-style.css', [], 1, 'all' );
+        wp_enqueue_script( 'tcb_component_script', plugin_dir_url( __FILE__ ) . 'dist/tcb-script.js', array(), '1.0' );
         wp_enqueue_script( 'repeater-js', plugin_dir_url( __FILE__ ) . 'dist/repeater.js', array('jquery'), '1.0' );
     }   
     
