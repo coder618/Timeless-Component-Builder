@@ -7,7 +7,7 @@
  * Version: 1.0.0 
  * Text Domain : basic-component
 */
-class Basic_Component_System{
+class TCB_Main{
 
     public function __construct() {
         $this->reg_hooks();
@@ -104,6 +104,6 @@ class Basic_Component_System{
     }   
     
 }
-new Basic_Component_System();
+new TCB_Main();
 
 

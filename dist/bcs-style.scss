@@ -1,0 +1,46 @@
+.single-field-wrapper {
+	margin-bottom: 20px;
+}
+.single-field-wrapper input,
+.single-field-wrapper textarea {
+	display: block;
+	width: 550px;
+	margin-top: 8px;
+}
+
+.single-field-wrapper label {
+	margin-bottom: 10px;
+	font-size: 16px;
+	font-weight: 500;
+	text-transform: capitalize;
+}
+
+.multiple-fileds-wrapper {
+	display: flex;
+	flex-direction: column;
+}
+
+.multiple-fileds-wrapper .single-item-wrapper {
+	padding: 15px;
+	margin-bottom: 15px;
+	border-radius: 5px;
+	border: 2px solid #ccc;
+	position: relative;
+}
+
+.item-delete-button {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	background-color: #ff5b5b !important;
+	color: #fff !important;
+	/* font-weight: 700; */
+	border-color: #ff5b5b !important;
+}
+
+.item-add-button {
+	font-size: 16px;
+	width: 200px;
+	height: 41px;
+	/* font-weight: 700; */
+}

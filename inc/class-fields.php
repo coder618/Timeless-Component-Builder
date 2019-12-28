@@ -131,10 +131,9 @@ class Bcs_fields{
         return '
             <div class="single-field-wrapper">
                 <label for="'.$name.'" >'.$label.'
-                    <input type="hidden" name="'.$name.'" value="'.$value.'" id="'.$name.'" />                     
-                    <button type="button" class="button media-uplooad-btn">Upload Media</button>
-                </label>
-                <p class="selected-file">'.$value.'</p>
+                    <input  type="text" name="'.$name.'" value="'.$value.'" id="'.$name.'" disabled />                     
+                </label>                
+                <button type="button" class="button media-uplooad-btn">Upload Media</button>
             </div>   
         ';
 
@@ -152,9 +151,8 @@ class Bcs_fields{
 
         return'
         <div class="single-field-wrapper">
-            <label for="'.$name.'" >'.$label.'
-                <input type="text" name="'.$name.'" placeholder="'.$placeholder.'" value="'.$value.'" /> 
-            </label>
+            <label for="'.$name.'" >'.$label.'</label>
+            <input type="text" name="'.$name.'" id="'.$name.'" placeholder="'.$placeholder.'" value="'.$value.'" /> 
         </div>   
         ';
     }
@@ -168,9 +166,8 @@ class Bcs_fields{
 
         return '
         <div class="single-field-wrapper">
-            <label for="'.$name.'" >'.$label.'
-                <textarea type="text" name="'.$name.'" placeholder="'.$placeholder.'" >'.$value.'</textarea>
-            </label>
+            <label for="'.$name.'" >'.$label.'</label>
+            <textarea type="text" id="'.$name.'" name="'.$name.'" placeholder="'.$placeholder.'" >'.$value.'</textarea>
         </div>        
         ';        
     }
