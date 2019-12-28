@@ -18,17 +18,7 @@ class Bcs_fields{
         
         $this->repeating_fields = isset($data['fields']) ? $data['fields'] : [];   
 
-
-        
-        // // $this->value = isset($data['value']) ? $data['value'] : '';
-        // if( $this->va )
-
-        // isset($data['value'])
-
-
         $this->get_value($meta_data);
-
-
 
     }
 
@@ -88,7 +78,7 @@ class Bcs_fields{
                     if( isset($this->value[$i][$c_name]) ) {
                         $single_field['value'] = $this->value[$i][$c_name];
                     }else{
-                        $single_field['value'] = "n";
+                        $single_field['value'] = "";
                     }
 
                     if( $single_field['type'] == 'textarea' ){
@@ -106,7 +96,7 @@ class Bcs_fields{
 
 
                 }
-                $child_fields .='<input data-repeater-delete type="button" value="Delete"/>';
+                $child_fields .='<input class="button item-delete-button" data-repeater-delete type="button" value="Delete"/>';
 
             $child_fields .= '</div>';
 
@@ -118,7 +108,10 @@ class Bcs_fields{
                 <div class="multiple-fileds-wrapper" data-repeater-list="'.$this->name.'">
                     '.$child_fields.'            
                 </div>
-                <input data-repeater-create type="button" value="Add"/>
+
+                <div class="add-button-wrapper">
+                    <input class="button  button-primary item-add-button" data-repeater-create type="button" value="ADD ITEM"/>               
+                </div>
             </div>        
         ';
         return $html;

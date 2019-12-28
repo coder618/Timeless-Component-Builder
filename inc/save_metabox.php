@@ -1,5 +1,22 @@
 <?php 
 function save_global_notice_meta_box_data( $post_id ) {    
+
+    // verify this came from the our screen and with proper authorization.
+    if ( !wp_verify_nonce( $_POST['bcs_nonce'], 'bcs_nonce'.$post_id )) {
+        return $post_id;
+    }
+     
+    // verify if this is an auto save routine. If it is our form has not been submitted, so we dont want to do anything
+    if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) 
+        return $post_id;
+     
+    // Check permissions
+    if ( !current_user_can( 'edit_post', $post_id ) )
+        return $post_id;
+
+
+
+
     ## Get current Component Type
     $c_cats = get_the_terms($post_id, 'component_type');
 

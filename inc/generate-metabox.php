@@ -28,6 +28,9 @@ function bcs_generate_fields( $post ) {
             # Get assigned component fields from the array
             $c_bcs_fileds = $bcs_fileds[$component_cat];
 
+            ## Add nonce field
+            echo '<input type="hidden" name="bcs_nonce" id="bcs_nonce" value="'.wp_create_nonce( 'bcs_nonce'.$post->ID ).'" />';
+
             ## generate meta box based on assigned field and 
             foreach($c_bcs_fileds as $field):                
                 $fields_class = new Bcs_fields($field, $saved_meta_data);
@@ -37,7 +40,7 @@ function bcs_generate_fields( $post ) {
 
     }
 
-    print_r(get_post_meta( $post_id, 'bcs_component_data',true));
+    // print_r(get_post_meta( $post_id, 'bcs_component_data',true));
 
 
 }
