@@ -70,8 +70,8 @@ function banner_fields($arr){
             'field' => 'detail',
             'label' => __('Banner detail', 'tcb'),
 			'columns' => '12',
-		],		
-    ]
+	],		
+    ];
     return $arr;
 }
 add_filter( 'tcb__fileds', 'banner_fields' );
