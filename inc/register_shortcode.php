@@ -27,7 +27,7 @@ function tcb_shortcode($atts=[]) {
         return ob_get_clean();
     }else{
         $str = __('Please Create a file at ', "tcb") .": ". $file_path ;
-        $str = __(" To render the component", "tcb");
+        $str .= __(" To render the component", "tcb");
         return $str;
     }
 
