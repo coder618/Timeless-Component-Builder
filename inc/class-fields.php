@@ -20,10 +20,10 @@ class TCB_fields{
 
     // assign the data to the variable
     function __construct($data,$meta_data){ 
-        $this->name = isset($data['field']) ? $data['field'] : '';
-        $this->placeholder = isset($data['placeholder']) ? $data['placeholder'] : '';
-        $this->label = isset($data['label']) ? $data['label'] : '';
-        $this->type = isset($data['type']) ? $data['type'] : '';   
+        $this->name = esc_html(isset($data['field']) ? $data['field'] : '');
+        $this->placeholder = esc_html(isset($data['placeholder']) ? $data['placeholder'] : '');
+        $this->label = esc_html(isset($data['label']) ? $data['label'] : '');
+        $this->type = esc_html(isset($data['type']) ? $data['type'] : '');   
 
         
         $this->repeating_fields = isset($data['fields']) ? $data['fields'] : [];   
@@ -131,9 +131,10 @@ class TCB_fields{
 
     public function file_field($field_data = []){
 
-        $name = isset( $field_data['field'] ) ? $field_data['field'] : $this->name;
-        $value = isset( $field_data['value'] ) ? $field_data['value'] : $this->value;
-        $label = isset( $field_data['label'] ) ? $field_data['label'] : $this->label;
+        $name   = esc_html(  isset( $field_data['field'] ) ? $field_data['field'] : $this->name );
+        $value  = esc_html( isset( $field_data['value'] ) ? $field_data['value'] : $this->value );
+        $label  = esc_html(  isset( $field_data['label'] ) ? $field_data['label'] : $this->label );
+        
 
         return '
             <div class="single-field-wrapper">
@@ -148,13 +149,10 @@ class TCB_fields{
 
     public function text( $field_data = [] ){
 
-        $name = isset( $field_data['field'] ) ? $field_data['field'] : $this->name;
-        $value = isset( $field_data['value'] ) ? $field_data['value'] : $this->value;
-        $placeholder = isset( $field_data['placeholder'] ) ? $field_data['placeholder'] : $this->placeholder;
-        $label = isset( $field_data['label'] ) ? $field_data['label'] : $this->label;
-
-
-
+        $name           = esc_html(  isset( $field_data['field'] ) ? $field_data['field'] : $this->name );
+        $value          = esc_html(isset( $field_data['value'] ) ? $field_data['value'] : $this->value);
+        $placeholder    = esc_html(isset( $field_data['placeholder'] ) ? $field_data['placeholder'] : $this->placeholder);
+        $label          = esc_html(isset( $field_data['label'] ) ? $field_data['label'] : $this->label);
 
         return'
         <div class="single-field-wrapper">
@@ -166,10 +164,10 @@ class TCB_fields{
 
 
     public function textarea($field_data = []){
-        $name = isset( $field_data['field'] ) ? $field_data['field'] : $this->name;
-        $value = isset( $field_data['value'] ) ? $field_data['value'] : $this->value;
-        $placeholder = isset( $field_data['placeholder'] ) ? $field_data['placeholder'] : $this->placeholder;
-        $label = isset( $field_data['label'] ) ? $field_data['label'] : $this->label;
+        $name           = esc_html(isset( $field_data['field'] ) ? $field_data['field'] : $this->name);
+        $value          = esc_html(isset( $field_data['value'] ) ? $field_data['value'] : $this->value);
+        $placeholder    = esc_html(isset( $field_data['placeholder'] ) ? $field_data['placeholder'] : $this->placeholder);
+        $label          = esc_html(isset( $field_data['label'] ) ? $field_data['label'] : $this->label);
 
         return '
         <div class="single-field-wrapper">
