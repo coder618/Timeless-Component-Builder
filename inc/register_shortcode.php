@@ -26,7 +26,9 @@ function tcb_shortcode($atts=[]) {
         get_template_part( 'tcb/component-'. $cat_name );
         return ob_get_clean();
     }else{
-        return "Please Create a file at (". $file_path . ') To render the component';
+        $str = __('Please Create a file at ', "tcb") .": ". $file_path ;
+        $str = __(" To render the component", "tcb");
+        return $str;
     }
 
 }
