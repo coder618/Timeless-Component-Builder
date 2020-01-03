@@ -60,7 +60,7 @@ function save_global_notice_meta_box_data( $post_id ) {
 
                         foreach($field['fields'] as $child_field ){
                             $c_name = $child_field['field'] ;
-                            $array_to_save[$name][$i][$c_name] = filter_var($_POST[$name][$i][$c_name], FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH);
+                            $array_to_save[$name][$i][$c_name] = sanitize_text_field($_POST[$name][$i][$c_name]);
                         }                        
                     }
 
@@ -70,7 +70,7 @@ function save_global_notice_meta_box_data( $post_id ) {
                 }else{
                     ## check if the value present in the post array push the data
                     if( array_key_exists( $name, $_POST  )) :
-                        $array_to_save[$name] = filter_var($_POST[$name], FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH);                        
+                        $array_to_save[$name] = sanitize_text_field($_POST[$name]);
                     endif;
                 }
 

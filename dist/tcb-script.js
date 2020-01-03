@@ -11,23 +11,7 @@ jQuery(document).ready(function($) {
 	// $("body").click(function(e) {
 
 	$("body").on("click", "button.media-uplooad-btn", function(e) {
-		// Get the btn
-		// console.log("clicked");
-		// var btn = e.target;
-
-		// Check if it's the upload button
-		// if (!btn || !$(btn).attr("data-media-uploader-target")) return;
-
-		// // Get the field target
-		// var field = $(this).data("media-uploader-target");
-
-		// // Prevents the default action from occuring.
-		// e.preventDefault();
-
-		// check if "data-media-uploader-target" attribute present
-		// if ($(this).attr("data-media-uploader-target")) {
 		e.preventDefault();
-		// var targetInputField = $(this).attr("name");
 
 		var $btn = $(this);
 
@@ -46,25 +30,17 @@ jQuery(document).ready(function($) {
 				.first()
 				.toJSON();
 
-			// Sends the attachment URL to our custom image input field.
-			// $(targetInputField).val(media_attachment.url);
-			// console.log(
-			// 	"Target > ",
-			// 	targetInputField,
-			// 	" url >",
-			// 	media_attachment.url,
-			// );
 			$btn.parents(".single-field-wrapper")
 				.find("input")
 				.attr("value", media_attachment.url);
 
-			// $btn.parents(".single-field-wrapper")
-			// 	.find(".selected-file")
-			// 	.text(media_attachment.url);
-
 			$btn.parents(".single-field-wrapper")
 				.find(".selected-file")
-				.text(media_attachment.url);
+				.html(
+					media_attachment.url +
+						"<button class='reset-file-field' type='button'>X</button>",
+				);
+			// .text(media_attachment.url);
 		});
 
 		// Opens the media library frame.
@@ -93,5 +69,22 @@ jQuery(document).ready(function($) {
 
 			isFirstItemUndeletable: false,
 		});
+	});
+
+	/**
+	 *
+	 * Remove Selected file from input
+	 */
+
+	$("body").on("click", "button.reset-file-field", function(e) {
+		e.preventDefault();
+		var $btn = $(this);
+		$btn.parents(".single-field-wrapper")
+			.find("input")
+			.attr("value", "");
+
+		$btn.parents(".single-field-wrapper")
+			.find(".selected-file")
+			.html("");
 	});
 });

@@ -136,14 +136,27 @@ class TCB_fields{
         $label  = esc_html(  isset( $field_data['label'] ) ? $field_data['label'] : $this->label );
         
 
-        return '
+        $html =  '
             <div class="single-field-wrapper">
                 <label for="'.$name.'" >'.$label.'</label>     
                 <input  type="hidden" name="'.$name.'" value="'.$value.'" id="'.$name.'" />   
-                <p class="selected-file">'.$value.'</p>
+        ';
+
+        // if any value present
+        if($value){
+            $html .= '<p class="selected-file">'.$value.'<button class="reset-file-field" type="button">X</button></p>';
+        }else{
+            $html .= '<p class="selected-file"></p>';
+        }
+                
+
+        $html .= '
                 <button type="button" class="button media-uplooad-btn">Upload Media</button>
             </div>   
         ';
+
+
+        return $html;
 
     }
 

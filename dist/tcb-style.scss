@@ -53,4 +53,17 @@ p.selected-file {
 	background: #ececec;
 	color: #000;
 	border-radius: 3px;
+	position: relative;
+	padding-right: 20px;
+	button {
+		position: absolute;
+		right: 0;
+		top: 0;
+		background: transparent;
+		border: 2px solid #b9a4a4;
+		border-radius: 25px;
+		font-weight: 700;
+		color: #b9a4a4;
+		cursor: pointer;
+	}
 }
