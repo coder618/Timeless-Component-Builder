@@ -5,7 +5,7 @@
  * meta data to dashboard
  * 
  */
-function save_global_notice_meta_box_data( $post_id ) {    
+function tcb_save_metabox( $post_id ) {    
 
     // verify this came from the our screen and with proper authorization.
     if ( isset($_POST['tcb_nonce']) &&  !wp_verify_nonce( $_POST['tcb_nonce'], 'tcb_nonce'.$post_id )) {
@@ -87,4 +87,4 @@ function save_global_notice_meta_box_data( $post_id ) {
 
 }
 
-add_action( 'save_post', 'save_global_notice_meta_box_data' );
+add_action( 'save_post', 'tcb_save_metabox' );
