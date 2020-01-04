@@ -2,7 +2,7 @@
 /**
  * This function will call every time when a post save
  * This function is responsible for saving component 
- * meta data to dashboard
+ * meta data to post
  * 
  */
 function tcb_save_metabox( $post_id ) {    
