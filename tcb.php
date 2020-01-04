@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Timeless Component Builder
- * Description: Build Solid and Timeless Component, in minimum amount of time.
+ * Description: Build Component in minimum amount of time.
  * Author: coder618
  * Author URI: https://coder618.github.io
  * Version: 1.0.0 
