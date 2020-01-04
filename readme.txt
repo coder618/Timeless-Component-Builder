@@ -87,10 +87,10 @@ Isn't that simple ?
 
 
 For Example full Documentation :
-Please Visit: [Github-Gist](https://coder618.github.io/tcb)
+Please Visit: [Plugin Landing Page](https://coder618.github.io/tcb)
 
 == How to use a component  ==
 1. From Dashboard, go to Component->Add New
-2. Give a name and Select the Component Type/Category and publish/update the component post,
+2. Give a name and Select the Component Type/Category and publish/update the component post.
 3. You will find Component Related field with the component will be available below the title, user can provide the necessary data in the field and update the component post.
 4. Copy the shortcode and use it where you want to render/view the component.
