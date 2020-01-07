@@ -7,8 +7,8 @@
 function tcb_data(){
     $id = get_query_var( 'tcb_id', false );
     
-    if( $id ){
-        return  unserialize( get_post_meta( $id, 'tcb_component_data',true));        
+    if( $id){        
+        return  get_post_meta( $id, 'tcb_component_data',true);
     }
 
     // by default return false

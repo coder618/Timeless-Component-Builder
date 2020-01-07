@@ -1,7 +1,7 @@
 === Timeless Component Builder ===
 Contributors: coder618
 Donate link: https://coder618.github.io
-Tags: Component System, Component Builder, Timeless component builder
+Tags: Component System, Component Builder, Timeless component builder, tcb
 Requires at least: 4.6
 Tested up to: 5.3.2
 Stable tag: 1.0
@@ -10,7 +10,7 @@ License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
-This plugin will help developer to build solid component.
+This plugin will help developer to build component in minimum amount of time.
 This plugin based on some wordpress core function like : add_filter , meta box , Custom post type.
 thats why you can consider this plugin is a timeless plugin, because i dont think WordPress going to replace 
 this function in the feature release.

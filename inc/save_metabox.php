@@ -79,7 +79,7 @@ function tcb_save_metabox( $post_id ) {
             endforeach;
 
             ## save the data to post meta
-            update_post_meta( $post_id, 'tcb_component_data', serialize($array_to_save)  );
+            update_post_meta( $post_id, 'tcb_component_data',   $array_to_save );
 
         }
 

@@ -1,13 +1,3 @@
-.single-field-wrapper {
-	margin-bottom: 20px;
-}
-.single-field-wrapper input,
-.single-field-wrapper textarea {
-	display: block;
-	width: 550px;
-	margin-top: 8px;
-}
-
 .single-field-wrapper label {
 	margin-bottom: 10px;
 	font-size: 16px;
@@ -18,14 +8,6 @@
 .multiple-fileds-wrapper {
 	display: flex;
 	flex-direction: column;
-}
-
-.multiple-fileds-wrapper .single-item-wrapper {
-	padding: 15px;
-	margin-bottom: 15px;
-	border-radius: 5px;
-	border: 2px solid #ccc;
-	position: relative;
 }
 
 .item-delete-button {
@@ -66,4 +48,80 @@ p.selected-file {
 		color: #b9a4a4;
 		cursor: pointer;
 	}
+}
+
+/* * */
+.tcb_fields_wrapper {
+	display: flex;
+	flex-wrap: wrap;
+	margin: -10px;
+}
+
+.single-field-wrapper {
+	width: 100%;
+	// margin-bottom: 20px;
+	padding: 10px;
+	input,
+	textarea {
+		display: block;
+		width: 100%;
+		margin-top: 8px;
+		font-size: 13px;
+	}
+	textarea {
+		min-height: 150px;
+	}
+	label {
+		font-size: 13px;
+	}
+
+	&.col-1 {
+		width: 10%;
+	}
+	&.col-2 {
+		width: 20%;
+	}
+	&.col-3 {
+		width: 30%;
+	}
+	&.col-4 {
+		width: 40%;
+	}
+	&.col-5 {
+		width: 50%;
+	}
+	&.col-6 {
+		width: 60%;
+	}
+	&.col-7 {
+		width: 70%;
+	}
+	&.col-8 {
+		width: 80%;
+	}
+	&.col-9 {
+		width: 90%;
+	}
+	&.col-10 {
+		width: 100%;
+	}
+}
+
+.single-item-wrapper {
+	border-radius: 2px;
+	padding: 15px;
+	background-color: #fcfcfc;
+	margin-bottom: 15px;
+	border-radius: 2px;
+	position: relative;
+	border: 1px solid #dfdfdf;
+	width: 100%;
+
+	&:hover {
+		background-color: #f6f6f6;
+	}
+}
+
+.repeater-fileds {
+	width: calc(100% - 30px);
 }

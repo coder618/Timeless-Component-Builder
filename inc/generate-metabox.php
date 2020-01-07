@@ -36,10 +36,12 @@ function tcb_generate_fields( $post ) {
             echo '<input type="hidden" name="tcb_nonce" id="tcb_nonce" value="'.wp_create_nonce( 'tcb_nonce'.$post->ID ).'" />';
 
             ## generate meta box based on assigned field and 
+            echo '<div class="tcb_fields_wrapper">';
             foreach($c_tcb_fileds as $field):                
                 $fields_class = new TCB_fields($field, $saved_meta_data);
                 echo $fields_class->render_field();
             endforeach;
+            echo "</div>";
         }
 
     }

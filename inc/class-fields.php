@@ -17,6 +17,7 @@ class TCB_fields{
     public $label;
     public $type;
     public $repeating_fields;
+    public $columns;
 
     // assign the data to the variable
     function __construct($data,$meta_data){ 
@@ -24,6 +25,7 @@ class TCB_fields{
         $this->placeholder = esc_html(isset($data['placeholder']) ? $data['placeholder'] : '');
         $this->label = esc_html(isset($data['label']) ? $data['label'] : '');
         $this->type = esc_html(isset($data['type']) ? $data['type'] : '');   
+        $this->columns = esc_html(  isset($data['columns']) && !empty($data['columns']) ? $data['columns'] : ''   );
 
         
         $this->repeating_fields = isset($data['fields']) ? $data['fields'] : [];   
@@ -33,11 +35,12 @@ class TCB_fields{
     }
 
     
-    public function get_value ($saved_meta_data){       
+    public function get_value ($saved_meta_data){  
+        // var_dump($saved_meta_data)     ;
             
         ## if have any old metadata saved
         if($saved_meta_data){                
-            $saved_meta_data = unserialize($saved_meta_data);                
+            $saved_meta_data =  $saved_meta_data ; 
             $value = is_array($saved_meta_data) && count($saved_meta_data) > 0 && array_key_exists($this->name,$saved_meta_data )? $saved_meta_data[$this->name]: '';
             $this->value = $value;
         }
@@ -47,7 +50,7 @@ class TCB_fields{
     public function render_field( $a_type = false ){       
         $type = $a_type ? $a_type : $this->type;
 
-        if( $this->type == 'textarea' ){
+        if( $this->type == 'textarea' ){ 
             return $this->textarea();
         }
 
@@ -134,10 +137,11 @@ class TCB_fields{
         $name   = esc_html(  isset( $field_data['field'] ) ? $field_data['field'] : $this->name );
         $value  = esc_html( isset( $field_data['value'] ) ? $field_data['value'] : $this->value );
         $label  = esc_html(  isset( $field_data['label'] ) ? $field_data['label'] : $this->label );
+        $columns  = esc_html(  isset( $field_data['columns'] ) ? $field_data['columns'] : $this->columns );
         
 
         $html =  '
-            <div class="single-field-wrapper">
+            <div class="single-field-wrapper col-'.$this->columns .'" >
                 <label for="'.$name.'" >'.$label.'</label>     
                 <input  type="hidden" name="'.$name.'" value="'.$value.'" id="'.$name.'" />   
         ';
@@ -166,9 +170,10 @@ class TCB_fields{
         $value          = esc_html(isset( $field_data['value'] ) ? $field_data['value'] : $this->value);
         $placeholder    = esc_html(isset( $field_data['placeholder'] ) ? $field_data['placeholder'] : $this->placeholder);
         $label          = esc_html(isset( $field_data['label'] ) ? $field_data['label'] : $this->label);
+        $columns  = esc_html(  isset( $field_data['columns'] ) ? $field_data['columns'] : $this->columns );
 
         return'
-        <div class="single-field-wrapper">
+        <div class="single-field-wrapper col-'.$this->columns .'" >
             <label for="'.$name.'" >'.$label.'</label>
             <input type="text" name="'.$name.'" id="'.$name.'" placeholder="'.$placeholder.'" value="'.$value.'" /> 
         </div>   
@@ -181,9 +186,10 @@ class TCB_fields{
         $value          = esc_html(isset( $field_data['value'] ) ? $field_data['value'] : $this->value);
         $placeholder    = esc_html(isset( $field_data['placeholder'] ) ? $field_data['placeholder'] : $this->placeholder);
         $label          = esc_html(isset( $field_data['label'] ) ? $field_data['label'] : $this->label);
+        $columns        = esc_html(isset( $field_data['columns'] ) ? $field_data['columns'] : $this->columns );
 
         return '
-        <div class="single-field-wrapper">
+        <div class="single-field-wrapper col-'.$this->columns .'" >
             <label for="'.$name.'" >'.$label.'</label>
             <textarea type="text" id="'.$name.'" name="'.$name.'" placeholder="'.$placeholder.'" >'.$value.'</textarea>
         </div>        
