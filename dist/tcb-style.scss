@@ -54,13 +54,16 @@ p.selected-file {
 .tcb_fields_wrapper {
 	display: flex;
 	flex-wrap: wrap;
-	margin: -10px;
+	// margin: -10px;
 }
 
 .single-field-wrapper {
 	width: 100%;
 	// margin-bottom: 20px;
-	padding: 10px;
+	// padding: 10px;
+	> div {
+		padding: 10px;
+	}
 	input,
 	textarea {
 		display: block;
@@ -74,36 +77,65 @@ p.selected-file {
 	label {
 		font-size: 13px;
 	}
-
 	&.col-1 {
-		width: 10%;
+		-ms-flex: 0 0 8.333333%;
+		flex: 0 0 8.333333%;
+		max-width: 8.333333%;
 	}
 	&.col-2 {
-		width: 20%;
+		-ms-flex: 0 0 16.666667%;
+		flex: 0 0 16.666667%;
+		max-width: 16.666667%;
 	}
 	&.col-3 {
-		width: 30%;
+		-ms-flex: 0 0 25%;
+		flex: 0 0 25%;
+		max-width: 25%;
 	}
 	&.col-4 {
-		width: 40%;
+		-ms-flex: 0 0 33.333333%;
+		flex: 0 0 33.333333%;
+		max-width: 33.333333%;
 	}
 	&.col-5 {
-		width: 50%;
+		-ms-flex: 0 0 41.666667%;
+		flex: 0 0 41.666667%;
+		max-width: 41.666667%;
 	}
 	&.col-6 {
-		width: 60%;
+		-ms-flex: 0 0 50%;
+		flex: 0 0 50%;
+		max-width: 50%;
 	}
 	&.col-7 {
-		width: 70%;
+		-ms-flex: 0 0 58.333333%;
+		flex: 0 0 58.333333%;
+		max-width: 58.333333%;
 	}
 	&.col-8 {
-		width: 80%;
+		-ms-flex: 0 0 66.666667%;
+		flex: 0 0 66.666667%;
+		max-width: 66.666667%;
 	}
 	&.col-9 {
-		width: 90%;
+		-ms-flex: 0 0 75%;
+		flex: 0 0 75%;
+		max-width: 75%;
 	}
 	&.col-10 {
-		width: 100%;
+		-ms-flex: 0 0 83.333333%;
+		flex: 0 0 83.333333%;
+		max-width: 83.333333%;
+	}
+	&.col-11 {
+		-ms-flex: 0 0 91.666667%;
+		flex: 0 0 91.666667%;
+		max-width: 91.666667%;
+	}
+	&.col-12 {
+		-ms-flex: 0 0 100%;
+		flex: 0 0 100%;
+		max-width: 100%;
 	}
 }
 
@@ -124,4 +156,9 @@ p.selected-file {
 
 .repeater-fileds {
 	width: calc(100% - 30px);
+}
+
+.multiple-items-title {
+	margin-bottom: 8px;
+	font-weight: 700;
 }

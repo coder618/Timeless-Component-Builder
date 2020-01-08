@@ -28,6 +28,15 @@ function tcb_save_metabox( $post_id ) {
 
     ## get all the user defined fields
     $tcb_fileds = apply_filters( 'tcb__fileds', array());
+    // add custom css class filed in all the components
+    foreach( $tcb_fileds as $k => $s_c_fileds ){    
+        $tcb_fileds[$k][] = [
+        'type' => 'text',
+        'field' => 'css_class',
+        'columns' => 12,
+        'label' => 'Add css class if Necessary'  
+        ];
+    }
 
     ## define a empty array where we push the data
     $array_to_save = [];
@@ -60,7 +69,12 @@ function tcb_save_metabox( $post_id ) {
 
                         foreach($field['fields'] as $child_field ){
                             $c_name = $child_field['field'] ;
-                            $array_to_save[$name][$i][$c_name] = sanitize_text_field($_POST[$name][$i][$c_name]);
+                            // if text area use different sanitization 
+                            if( $child_field['type'] == 'textarea' ) {                                
+                                $array_to_save[$name][$i][$c_name] =   wp_kses_post($_POST[$name][$i][$c_name]);
+                            }else{
+                                $array_to_save[$name][$i][$c_name] = sanitize_text_field($_POST[$name][$i][$c_name]);
+                            }
                         }                        
                     }
 
@@ -70,7 +84,13 @@ function tcb_save_metabox( $post_id ) {
                 }else{
                     ## check if the value present in the post array push the data
                     if( array_key_exists( $name, $_POST  )) :
-                        $array_to_save[$name] = sanitize_text_field($_POST[$name]);
+                        
+                        // if text area use different sanitization 
+                        if( $field['type'] == 'textarea' ) {        
+                            $array_to_save[$name] = wp_kses_post($_POST[$name]);
+                        }else{                            
+                            $array_to_save[$name] = sanitize_text_field($_POST[$name]);
+                        }
                     endif;
                 }
 
@@ -79,7 +99,7 @@ function tcb_save_metabox( $post_id ) {
             endforeach;
 
             ## save the data to post meta
-            update_post_meta( $post_id, 'tcb_component_data',   $array_to_save );
+            update_post_meta( $post_id, 'tcb_component_data', $array_to_save  );
 
         }
 

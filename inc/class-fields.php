@@ -116,7 +116,7 @@ class TCB_fields{
 
         $html = '
             <div class="repeater-fileds">
-                <input type="hidden" name="'.$this->name.'_count" value="'.$items_currently_have.'" />
+                <h3 class="multiple-items-title">'.$this->label.'</h3>
                 <div class="multiple-fileds-wrapper" data-repeater-list="'.$this->name.'">
                     '.$child_fields.'            
                 </div>
@@ -140,7 +140,7 @@ class TCB_fields{
         
 
         $html =  '
-            <div class="single-field-wrapper col-'.$this->columns .'" >
+            <div class="single-field-wrapper col-'.$this->columns .'" ><div>
                 <label for="'.$name.'" >'.$label.'</label>     
                 <input  type="hidden" name="'.$name.'" value="'.$value.'" id="'.$name.'" />   
         ';
@@ -155,7 +155,7 @@ class TCB_fields{
 
         $html .= '
                 <button type="button" class="button media-uplooad-btn">Upload Media</button>
-            </div>   
+            </div></div>   
         ';
 
 
@@ -172,10 +172,10 @@ class TCB_fields{
         $columns        = esc_html(  isset( $field_data['columns'] ) ? $field_data['columns'] : $this->columns );
 
         return'
-        <div class="single-field-wrapper col-'.$this->columns .'" >
+        <div class="single-field-wrapper col-'.$this->columns .'" ><div>
             <label for="'.$name.'" >'.$label.'</label>
             <input type="text" name="'.$name.'" id="'.$name.'" placeholder="'.$placeholder.'" value="'.$value.'" /> 
-        </div>   
+        </div></div>
         ';
     }
 
@@ -188,10 +188,10 @@ class TCB_fields{
         $columns        = esc_html(isset( $field_data['columns'] ) ? $field_data['columns'] : $this->columns );
 
         return '
-        <div class="single-field-wrapper col-'.$this->columns .'" >
+        <div class="single-field-wrapper col-'.$this->columns .'" ><div>
             <label for="'.$name.'" >'.$label.'</label>
             <textarea type="text" id="'.$name.'" name="'.$name.'" placeholder="'.$placeholder.'" >'.$value.'</textarea>
-        </div>        
+        </div></div>
         ';
     }
 

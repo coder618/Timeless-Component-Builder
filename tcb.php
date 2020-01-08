@@ -4,7 +4,7 @@
  * Description: Build Component in minimum amount of time.
  * Author: coder618
  * Author URI: https://coder618.github.io
- * Version: 1.0.0 
+ * Version: 1.1.0
  * Text Domain : tcb
 */
 class TCB_Main{
