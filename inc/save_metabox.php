@@ -20,23 +20,12 @@ function tcb_save_metabox( $post_id ) {
     if ( !current_user_can( 'edit_post', $post_id ) )
         return $post_id;
 
-
-
-
     ## Get current Component Type
     $c_cats = get_the_terms($post_id, 'component_type');
 
     ## get all the user defined fields
-    $tcb_fileds = apply_filters( 'tcb__fileds', array());
-    // add custom css class filed in all the components
-    foreach( $tcb_fileds as $k => $s_c_fileds ){    
-        $tcb_fileds[$k][] = [
-        'type' => 'text',
-        'field' => 'css_class',
-        'columns' => 12,
-        'label' => 'Add css class if Necessary'  
-        ];
-    }
+
+    $tcb_fields = tcb_get_registered_component();
 
     ## define a empty array where we push the data
     $array_to_save = [];
@@ -48,16 +37,16 @@ function tcb_save_metabox( $post_id ) {
 
 
         # Check if available categories have any field defined
-        if(array_key_exists($component_cat, $tcb_fileds)){
+        if(array_key_exists($component_cat, $tcb_fields)){
             // echo "YYY";
 
             # Get associative component fields from the array
-            $c_tcb_fileds = $tcb_fileds[$component_cat];
+            $c_tcb_fields = $tcb_fields[$component_cat];
 
 
 
             
-            foreach($c_tcb_fileds as $field):
+            foreach($c_tcb_fields as $field):
                 $name = $field['field'];
 
                 if( $field['type'] == 'repeater' ){

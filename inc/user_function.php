@@ -32,7 +32,7 @@ function tcb_link(){
  * 
  */
 
-function tcb_class($extra_class=""){
+function tcb_class($extra_class=false){
     $id = get_query_var( 'tcb_id', false );
     $cat_name =  get_query_var( 'tcb_cat', false ) ;
 
@@ -44,5 +44,23 @@ function tcb_class($extra_class=""){
     if( $data != false ){
         $class_name .=  isset($data['css_class']) && !empty($data['css_class']) ? sanitize_html_class($data['css_class'])  : '';
     }
-    return $class_name ." ". sanitize_html_class($extra_class);
+    return $extra_class ?  $class_name ." ". sanitize_html_class($extra_class) : $class_name ;
+}
+
+/**
+ * This function will return registered component array
+ */
+function tcb_get_registered_component(){
+    $fields = apply_filters( 'tcb__fields', array());
+
+     // add custom css class filed in all the components
+     foreach( $fields as $k => $s_c_fileds ){    
+        $fields[$k][] = [
+        'type' => 'text',
+        'field' => 'css_class',
+        'columns' => 12,
+        'label' => 'Add css class if Necessary'  
+        ];
+    }
+    return is_array($fields) && count($fields) > 0 ? $fields : [] ;    
 }

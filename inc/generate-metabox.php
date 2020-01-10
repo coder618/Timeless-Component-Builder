@@ -1,5 +1,4 @@
 <?php 
-require 'class-fields.php';
 /**
  * This function will call the TCB_fields class and generate the HTML output
  * 
@@ -8,9 +7,7 @@ require 'class-fields.php';
 
 function tcb_generate_fields( $post ) {
     ## get all the user defined fields
-    $tcb_fileds = apply_filters( 'tcb__fileds', array());
-
-    // var_dump($tcb_fileds);
+    $tcb_fields = tcb_get_registered_component();
 
     # get current post id
     $post_id = $post->ID;
@@ -25,19 +22,19 @@ function tcb_generate_fields( $post ) {
         $component_cat = $c_cats[0]->slug;
 
         # Check if available categories have any field defined
-        if(array_key_exists($component_cat, $tcb_fileds)){
+        if(array_key_exists($component_cat, $tcb_fields)){
 
             $saved_meta_data = get_post_meta( $post_id  ,'tcb_component_data', true );
             
             # Get assigned component fields from the array
-            $c_tcb_fileds = $tcb_fileds[$component_cat];
+            $c_tcb_fields = $tcb_fields[$component_cat];
 
             ## Add nonce field
             echo '<input type="hidden" name="tcb_nonce" id="tcb_nonce" value="'.wp_create_nonce( 'tcb_nonce'.$post->ID ).'" />';
 
             ## generate meta box based on assigned field and 
             echo '<div class="tcb_fields_wrapper">';
-            foreach($c_tcb_fileds as $field):                
+            foreach($c_tcb_fields as $field):                
                 $fields_class = new TCB_fields($field, $saved_meta_data);
                 echo $fields_class->render_field();
             endforeach;

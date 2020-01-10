@@ -61,12 +61,13 @@ class TCB_Main{
 
     private function load_dependencies() {
 		
+        require plugin_dir_path( __FILE__ ) .  'inc/user_function.php';
+        require plugin_dir_path( __FILE__ ) .  'inc/class-fields.php';
         require plugin_dir_path( __FILE__ ) .  'inc/add_categories.php';
         require plugin_dir_path( __FILE__ ) .  'inc/add_metabox.php';
         require plugin_dir_path( __FILE__ ) .  'inc/generate-metabox.php';
         require plugin_dir_path( __FILE__ ) .  'inc/save_metabox.php';
         require plugin_dir_path( __FILE__ ) .  'inc/register_shortcode.php';
-        require plugin_dir_path( __FILE__ ) .  'inc/user_function.php';
 
     }
 
