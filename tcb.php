@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Timeless Component Builder
- * Description: Build Component in minimum amount of time.
+ * Description: Build reusable Component in minimum amount of time.
  * Author: coder618
  * Author URI: https://coder618.github.io
  * Version: 1.1.0
@@ -23,7 +23,7 @@ class TCB_Main{
                     'name' => __( 'Components', 'tcb' ),
                     'singular_name' => __( 'Component', 'tcb' )
                 ),
-                'public' => true,
+                'public' => false,
                 'has_archive' => false,
                 'publicly_queryable' =>false,
                 'show_in_rest' => false,
