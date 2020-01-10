@@ -4,7 +4,7 @@ Donate link: https://coder618.github.io
 Tags: Component System, Component Builder, Timeless component builder, tcb
 Requires at least: 4.6
 Tested up to: 5.3.2
-Stable tag: 1.0
+Stable tag: 1.1.0
 Requires PHP: 7.0
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -73,7 +73,7 @@ function banner_fields($arr){
     ];
     return $arr;
 }
-add_filter( 'tcb__fileds', 'banner_fields' );
+add_filter( 'tcb__fields', 'banner_fields' );
 
 Step 2: 
 Create a template file (.php) at the location " activated-theme/tcb/component-{$component-category}.php"
