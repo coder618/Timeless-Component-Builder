@@ -36,6 +36,9 @@ No available right now.
 
 == Changelog ==
 
+= 1.1.0 =
+* File structure change with filter name.
+
 = 1.0.0 =
 * First release.
 

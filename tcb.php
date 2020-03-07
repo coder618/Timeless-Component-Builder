@@ -23,11 +23,11 @@ class TCB_Main{
                     'name' => __( 'Components', 'tcb' ),
                     'singular_name' => __( 'Component', 'tcb' )
                 ),
-                'public' => false,
+                'public' => true,
                 'has_archive' => false,
                 'publicly_queryable' =>false,
                 'show_in_rest' => false,
-                'supports' => [ 'title' ],
+                'supports' => [ 'title','thumbnail' ],
             )
         );
     }

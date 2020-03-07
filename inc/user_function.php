@@ -20,8 +20,10 @@ function tcb_data(){
  */
 function tcb_link(){
     $id = get_query_var( 'tcb_id', false );
-    if($id){
-        return "<a href='".get_edit_post_link($id)."' class='tcb_link tcb_component_edit_link'>Edit</a>";
+    if( is_user_logged_in() && current_user_can('administrator') ){
+        if($id){
+            return "<a href='".get_edit_post_link($id)."' class='tcb_link tcb_component_edit_link'>Edit</a>";
+        }
     }
     return '';
 }
